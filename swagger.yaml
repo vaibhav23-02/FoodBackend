@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: Food Delivery App
+  version: 1.0.0
+  description: API for the food delivery app
+servers:
+  - url:
+    description: Production server
+  - url: http://localhost:3300
+    description: Local servesr
+paths:
+  /calculate:
+    post:
+      summary: Calculate the final price for food delivery
+      tags:
+        - Price
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                zone:
+                  type: string
+                  example: central
+                organization_id:
+                  type: integer
+                  example: 1
+                total_distance:
+                  type: integer
+                  example: 20
+                item_type:
+                  type: string
+                  example: perishable
+      responses:
+        '200':
+          description: Successfully calculated the total price
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Total price:
+                    type: number
